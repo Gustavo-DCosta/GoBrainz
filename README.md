@@ -105,6 +105,6 @@ MIT – steal it, fork it, improve it. Just give the gopher some love.
 
 ---
 
-![Go Version](https://img.shields.io/badge/go-1.22-blue)
+![Go Version](https://img.shields.io/badge/go-1.24-blue)
 ![Notion API](https://img.shields.io/badge/notion-api-orange)
 ![CLI-Lover](https://img.shields.io/badge/CLI-approved-brightgreen)
