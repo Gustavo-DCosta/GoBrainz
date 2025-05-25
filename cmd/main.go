@@ -9,6 +9,8 @@ import (
 )
 
 func main() {
+	var name string
+	var username string
 	var choice int8
 	color.Red("ENGINE STARTING...\n")
 	time.Sleep(10 * time.Second)
@@ -39,4 +41,11 @@ func main() {
 		break
 	}
 
+	color.RGB(227, 232, 104).Println("Please insert a name")
+	fmt.Scan(&name)
+
+	color.RGB(227, 232, 104).Println("Please insert a name")
+	fmt.Scan(&username)
+
+	services.PromptOut(name, username)
 }
