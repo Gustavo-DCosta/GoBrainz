@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"time"
 
+	services "github.com/Gustavo-DCosta/GoBrainz/internal/Services"
 	"github.com/fatih/color"
 )
 
@@ -23,40 +23,20 @@ func main() {
 
 	fmt.Scan(&choice)
 
-	for {
-		switch choice {
-		case 1:
-			color.Green("Very well let's start...")
-			file, err := os.Create("syntax.txt")
+	switch choice {
+	case 1:
+		color.Green("Very well let's start...")
+		services.CreatingCacheFile()
+		break
 
-			if err != nil {
-				fmt.Println("There was an error creating the cache file")
-			}
-
-			defer file.Close()
-			break
-
-		case 2:
-			color.Green("Very well let's start...")
-			file, err := os.Create("syntax.txt")
-
-			if err != nil {
-				fmt.Println("Error creating cache file")
-			}
-
-			defer file.Close()
-			break
-		case 3:
-			color.Green("Very well let's start...")
-			file, err := os.Create("syntax.txt")
-
-			if err != nil {
-				fmt.Println("Error creating cache file")
-			}
-			defer file.Close()
-			break
-		}
-
+	case 2:
+		color.Green("Very well let's start...")
+		services.CreatingCacheFile()
+		break
+	case 3:
+		color.Green("Very well let's start...")
+		services.CreatingCacheFile()
+		break
 	}
 
 }
