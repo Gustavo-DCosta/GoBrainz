@@ -1,18 +1,17 @@
 package services
 
 import (
-	"fmt"
-
 	"github.com/fatih/color"
 )
 
 func PromptOut() {
-	var username string
-	fmt.Print("Please insert an username: ")
-	fmt.Scan(&username)
+	color.Cyan("Welcome to GoBrainz, a CLI assistant tool")
 
-	color.RGB(227, 232, 104).Printf("GoBrainz@")
-	fmt.Print(username)
-	color.RGB(227, 232, 104).Print("$")
+	color.Magenta("Before starting, would you like to select the syntax that you are most comfortable with?")
+	color.Yellow(`
+		1. @argument
+		2. argument?
+		3. GoBrainz argument
+		`)
 
 }

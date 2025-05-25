@@ -10,23 +10,23 @@ import (
 func main() {
 	var choice int8
 
-	services.EngineStart()
+	services.PromptOut()
 
 	fmt.Scan(&choice)
 
 	switch choice {
 	case 1:
 		services.CreatingCacheFile()
-		services.PromptOut()
+		services.EngineStart()
 		break
 
 	case 2:
 		services.CreatingCacheFile()
-		services.PromptOut()
+		services.EngineStart()
 		break
 	case 3:
 		services.CreatingCacheFile()
-		services.PromptOut()
+		services.EngineStart()
 		break
 	}
 }

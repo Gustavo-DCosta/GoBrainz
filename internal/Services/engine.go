@@ -1,18 +1,32 @@
 package services
 
 import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+
 	"github.com/fatih/color"
 )
 
 func EngineStart() {
+	var username string
 
-	color.Cyan("Welcome to GoBrainz, a CLI assistant tool")
+	fmt.Print("Please insert an username: ")
+	fmt.Scan(&username)
 
-	color.Magenta("Before starting, would you like to select the syntax that you are most comfortable with?")
-	color.Yellow(`
-		1. @argument
-		2. argument?
-		3. GoBrainz argument
-		`)
+	color.RGB(227, 232, 104).Printf("GoBrainz@")
+	fmt.Print(username)
+	color.RGB(227, 232, 104).Print("$")
+
+	reader := bufio.NewReader(os.Stdin)
+	cmdLine, _ := reader.ReadString('\n')
+	cmdLine = strings.TrimSpace(cmdLine) // Remove that lil' newline
+
+	tokens := strings.Split(cmdLine, " ")
+
+	for i := 0; i < len(tokens); i++ {
+		fmt.Println(tokens[i])
+	}
 
 }
