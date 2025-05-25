@@ -3,14 +3,17 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/fatih/color"
 )
 
 func main() {
 	var choice int8
+	color.Red("ENGINE STARTING...\n")
+	time.Sleep(10 * time.Second)
 	color.Cyan("Welcome to GoBrainz, a CLI assistant tool")
-	
+
 	color.Magenta("Before starting, would you like to select the syntax that you are most comfortable with?")
 	color.Yellow(`
 	1. @argument
@@ -21,8 +24,8 @@ func main() {
 	fmt.Scan(&choice)
 
 	for {
-  	switch(choice) {
-		case 1: 
+		switch choice {
+		case 1:
 			color.Green("Very well let's start...")
 			file, err := os.Create("syntax.txt")
 
@@ -30,10 +33,10 @@ func main() {
 				fmt.Println("There was an error creating the cache file")
 			}
 
-			defer file.Close() 
+			defer file.Close()
 			break
-	
-			case 2:
+
+		case 2:
 			color.Green("Very well let's start...")
 			file, err := os.Create("syntax.txt")
 
@@ -43,7 +46,7 @@ func main() {
 
 			defer file.Close()
 			break
-	case 3:
+		case 3:
 			color.Green("Very well let's start...")
 			file, err := os.Create("syntax.txt")
 
@@ -52,7 +55,7 @@ func main() {
 			}
 			defer file.Close()
 			break
-	}
+		}
 
 	}
 
