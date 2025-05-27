@@ -13,5 +13,4 @@ func PromptOut() {
 		2. argument?
 		3. GoBrainz argument
 		`)
-
 }

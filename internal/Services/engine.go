@@ -9,24 +9,33 @@ import (
 	"github.com/fatih/color"
 )
 
+const (
+	AddArgument = "add"
+)
+
 func EngineStart() {
 	var username string
 
-	fmt.Print("Please insert an username: ")
+	fmt.Print("Please insert a username: ")
 	fmt.Scan(&username)
 
-	color.RGB(227, 232, 104).Printf("GoBrainz@")
-	fmt.Print(username)
-	color.RGB(227, 232, 104).Print("$")
+	scanner := bufio.NewScanner(os.Stdin)
 
-	reader := bufio.NewReader(os.Stdin)
-	cmdLine, _ := reader.ReadString('\n')
-	cmdLine = strings.TrimSpace(cmdLine) // Remove that lil' newline
+	for {
+		color.RGB(227, 232, 104).Printf("GoBrainz@")
+		fmt.Print(username)
+		color.RGB(227, 232, 104).Print(" $ ")
 
-	tokens := strings.Split(cmdLine, " ")
+		if !scanner.Scan() {
+			break
+		}
 
-	for i := 0; i < len(tokens); i++ {
-		fmt.Println(tokens[i])
+		input := scanner.Text()
+		tokens := strings.Fields(input)
+
+		// Compare against single-argument slice
+		if len(tokens) == 1 && tokens[0] == AddArgument {
+			color.Green("Notion page created")
+		}
 	}
-
 }
