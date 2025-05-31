@@ -1,7 +1,7 @@
 # GoBrainz – The Nerdy Gopher Assistant for Notion
 
 <p align="center">
-  <img src="./README/Logo de GoBeanz et gopher.png" alt="GoBeanz mascot"/>
+  <img src="./README/GoBrainz.png"/>
 </p>
 
 **GoBrainz** is a minimal CLI productivity assistant powered by the Notion API and written in Go.
