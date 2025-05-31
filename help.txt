@@ -1,0 +1,5 @@
+// Welcome to GoBrainz \\
+
+
+GoBrainz add    --    Command to add a page
+GoBrainz profile    --    Command to check your profile 

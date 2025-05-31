@@ -23,8 +23,9 @@ func TokenCom(command string) {
 
 	for i := 0; i < len(token); i++ {
 		fmt.Println(token[i])
-		if token[i] == StatementO+" " {
+
+		/*if token[i] == StatementO+" " {
 			color.Red("Syntax Error, must have the official statement 'GoBrainz' + 'argument' ")
-		}
+		}*/
 	}
 }

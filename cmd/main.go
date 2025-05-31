@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	services "github.com/Gustavo-DCosta/GoBrainz/internal/Services"
 	"github.com/fatih/color"
@@ -10,6 +11,7 @@ import (
 func main() {
 	var username string
 	var command string
+	var choice int8
 	color.Cyan(`        Welcome to GoBrainz
 GoBrainz is a CLI tool to help manage Notion projects with simple commands`)
 
@@ -17,7 +19,19 @@ GoBrainz is a CLI tool to help manage Notion projects with simple commands`)
 	1. Help
 	2. Exit`)
 
-	fmt.Println("Please insert an username: ")
+	fmt.Scan(&choice)
+	switch choice {
+	case 1:
+		data, err := os.ReadFile("help.txt")
+		if err != nil {
+			color.Red("Error reading help.txt:", err)
+			return
+		}
+		fmt.Print(string(data))
+		fmt.Println("\n ")
+	}
+
+	fmt.Print("Please insert an username: ")
 	fmt.Scan(&username)
 
 	services.PromptOut(username)
