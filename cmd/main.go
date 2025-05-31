@@ -9,6 +9,7 @@ import (
 
 func main() {
 	var username string
+	var command string
 	color.Cyan(`        Welcome to GoBrainz
 GoBrainz is a CLI tool to help manage Notion projects with simple commands`)
 
@@ -20,5 +21,9 @@ GoBrainz is a CLI tool to help manage Notion projects with simple commands`)
 	fmt.Scan(&username)
 
 	services.PromptOut(username)
-
+	for {
+		fmt.Scan(&command)
+		services.TokenCom(command)
+		services.PromptOut(username)
+	}
 }
