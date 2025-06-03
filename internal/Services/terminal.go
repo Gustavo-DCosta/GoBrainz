@@ -2,14 +2,13 @@ package services
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/fatih/color"
 )
 
 const (
-	StatementO   = "GoBrainz"
-	StatementADD = "Add"
+	StatementProfile = "GoBrainz profile"
+	StatementAdd     = "GoBrainz add"
 )
 
 func PromptOut(username string) {
@@ -19,14 +18,13 @@ func PromptOut(username string) {
 }
 
 func TokenCom(command string) {
-	token := strings.Split(command, " ")
 
-	for i := 0; i < len(token); i++ {
-		fmt.Println(token[i])
-
-		cmd := strings.Compare(token[1], StatementO)
-		if cmd == -1 {
-			color.Red("Error string does not contain GoBrainz keyword")
-		}
+	switch command {
+	case StatementAdd:
+		fmt.Println("ADDED page")
+		break
+	case StatementProfile:
+		fmt.Println("This is your profile")
+		break
 	}
 }
