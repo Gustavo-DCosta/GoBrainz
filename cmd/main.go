@@ -8,22 +8,26 @@ import (
 
 	services "github.com/Gustavo-DCosta/GoBrainz/internal/Services"
 	"github.com/fatih/color"
-	//	"github.com/gofiber/fiber/v2"
 )
 
-func init() {
-	file, err := os.Create("Config.GoBrainz")
+var username string
 
+func init() {
+	path := "./GoBrainz/Config.GoBrainz"
+
+	data, err := os.ReadFile(path)
 	if err != nil {
-		color.Red("Error creating config file", err)
+		fmt.Println("⚠️ Config file not found. It will be created after username input.")
+		return
 	}
 
-	defer file.Close()
+	username = strings.TrimSpace(string(data))
+	fmt.Printf("Loaded username from config: %s\n", username)
 }
 
 func main() {
-	var username string
 	var choice int8
+
 	color.Cyan(`        Welcome to GoBrainz
 		GoBrainz is a CLI tool to help manage Notion projects with simple commands`)
 
@@ -43,15 +47,20 @@ func main() {
 		fmt.Println("\n ")
 	}
 
-	fmt.Print("Please insert an username: ")
-	fmt.Scan(&username)
+	// Only ask for username if it's not already set
+	if username == "" {
+		fmt.Print("Please insert a username: ")
+		fmt.Scan(&username)
+		services.WriteUsername(username)
+	}
 
-	services.PromptOut(username)
 	for {
+		services.PromptOut(username)
+
 		reader := bufio.NewReader(os.Stdin)
 		input, _ := reader.ReadString('\n')
 		input = strings.TrimSpace(input)
+
 		services.TokenCom(input)
-		services.PromptOut(username)
 	}
 }
