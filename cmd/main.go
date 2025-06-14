@@ -10,23 +10,10 @@ import (
 	"github.com/fatih/color"
 )
 
-var username string
-
-func init() {
-	path := "./GoBrainz/Config.GoBrainz"
-
-	data, err := os.ReadFile(path)
-	if err != nil {
-		fmt.Println("⚠️ Config file not found. It will be created after username input.")
-		return
-	}
-
-	username = strings.TrimSpace(string(data))
-	fmt.Printf("Loaded username from config: %s\n", username)
-}
-
 func main() {
+	var username string
 	var choice int8
+	services.CheckForUsername("cnf.GoBrainz.config")
 
 	color.Cyan(`        Welcome to GoBrainz
 		GoBrainz is a CLI tool to help manage Notion projects with simple commands`)
@@ -51,7 +38,7 @@ func main() {
 	if username == "" {
 		fmt.Print("Please insert a username: ")
 		fmt.Scan(&username)
-		services.WriteUsername(username)
+		services.WriteUsername("cnf.GoBrainz.config", username)
 	}
 
 	for {
