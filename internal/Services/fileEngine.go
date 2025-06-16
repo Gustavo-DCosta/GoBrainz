@@ -9,6 +9,17 @@ import (
 	"github.com/fatih/color"
 )
 
+var fileConfig = struct {
+	comment1    string
+	version     string
+	comment2    string
+	usernametxt string
+}{
+	comment1: "# this is the config file\n",
+	version:  "v1.0 patch 0\n",
+	comment2: "# User username\n",
+}
+
 func ParseConfigFile(path string, username string) (map[string]string, error) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -60,7 +71,7 @@ func ParseConfigFile(path string, username string) (map[string]string, error) {
 func CheckForUsername(path string) {
 	file, err := os.Open(path)
 	if err != nil {
-		color.Red("Can't open the file", err)
+		color.Red("Can't open the file: %s", err)
 	}
 	defer file.Close()
 
@@ -81,9 +92,9 @@ func CheckForUsername(path string) {
 }
 
 func WriteUsername(path string, Nusername string) {
-	file, err := os.Open(path)
+	file, err := os.OpenFile(path, os.O_RDWR|os.O_APPEND, 0644)
 	if err != nil {
-		color.Red("Can't open the file", err)
+		color.Red("Error opening the file: %s", err)
 	}
 	defer file.Close()
 
@@ -97,10 +108,21 @@ func WriteUsername(path string, Nusername string) {
 		if username != nil || username[1] == " " {
 			_, err := file.WriteString(fmt.Sprintf("username => %s\n", Nusername))
 			if err != nil {
-				color.Red("Error writting username", err)
+				color.Red("Error writting username: %s", err)
 			}
 		} else {
 			continue
 		}
 	}
+}
+
+func WriteFile(path string) error {
+	content := fmt.Sprintf(
+		"%s\n%s\n%s \n",
+		fileConfig.comment1,
+		fileConfig.version,
+		fileConfig.comment2,
+	)
+
+	return os.WriteFile(path, []byte(content), 0666)
 }
