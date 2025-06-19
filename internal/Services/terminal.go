@@ -11,6 +11,7 @@ import (
 const (
 	StatementProfile = "GoBrainz profile"
 	StatementAdd     = "GoBrainz add"
+	StatementLink    = "GoBrainz link"
 )
 
 func ServerOn() {
@@ -46,5 +47,16 @@ func TokenCom(command string) {
 	case StatementProfile:
 		fmt.Println("This is your profile")
 		break
+	case StatementLink:
+		fmt.Println("Added link page")
+		cmd := exec.Command("node", "linkblock.js")
+		output, err := cmd.CombinedOutput()
+
+		if err != nil {
+			color.RGB(239, 98, 110).Println("Failed creating a Notion link block:\n", err)
+			fmt.Print(string(output))
+		}
+		break
 	}
+
 }
