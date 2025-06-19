@@ -11,6 +11,7 @@ import (
 )
 
 func init() {
+	go services.ServerOn()
 	file, err := os.Stat("cnf.GoBrainz.config")
 	if err != nil {
 		color.Red("Having problems running the search file program: ", err)
@@ -29,25 +30,6 @@ func init() {
 		services.CheckForUsername("cnf.GoBrainz.config")
 	}
 }
-
-/*func ReadUsername(path string) {
-	file, err := os.Open(path)
-	if err != nil {
-		color.Red("Error opening the file: %s", err)
-	}
-
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := strings.TrimSpace(scanner.Text())
-		if line == "" || strings.HasPrefix(line, "#") || strings.HasPrefix(line, "v") {
-			continue
-		}
-		username := strings.SplitN(line, "=>", 2)
-		fmt.Println(username[1])
-	}
-}*/
 
 func main() {
 	var username string
